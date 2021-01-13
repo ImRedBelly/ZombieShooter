@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Army_zombie
+  m_Controller: {fileID: 9100000, guid: 8d12e7b000e034341889c0df8cd1cb0a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3f8ed0eb51b9fb045ae1ef5e9d4e81df, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b1f063a318247af47bd88a328de97229, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74bcd68e78970634a93a440310c5a6ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0bfc43d5a2d18cf4ab6551f1935a95f3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74029c429b39e144d8174027c2c2d096, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6342c0cd624c91f41b40d66f2a28dd4f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 00aa49170f2823b45946ee516994dd7b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e6feb473d712b104ca41059adfd317fb, type: 2}

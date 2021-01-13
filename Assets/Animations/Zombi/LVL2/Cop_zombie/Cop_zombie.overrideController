@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cop_zombie
+  m_Controller: {fileID: 9100000, guid: 8d12e7b000e034341889c0df8cd1cb0a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3f8ed0eb51b9fb045ae1ef5e9d4e81df, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 06f7e9b8352addd43b701f78e7fad6ad, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74bcd68e78970634a93a440310c5a6ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7f32a16c6b1e8d848af7d2616edf897b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74029c429b39e144d8174027c2c2d096, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 50ffeb98cc5c8334b92416a3f862cf2a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 00aa49170f2823b45946ee516994dd7b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8ca2bcfcd353c2446bf3b12de26a3bcc, type: 2}

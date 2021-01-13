@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - Enemy
+  - Zombi
+  - Claws
+  - MagazineGun
+  - MagazineRiffle
+  - Tank
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Zombi
+  - PlayerBullet
+  - EnemyBullet
+  - Asphalt
+  - Puddle
+  - Grenade
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Sand
+    uniqueID: 1628065971
+    locked: 0
+  - name: Ground
+    uniqueID: 1917717537
+    locked: 0
+  - name: Water
+    uniqueID: 3261281905
+    locked: 0
+  - name: Asphalt
+    uniqueID: 2121054163
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Bullet
+    uniqueID: 1247657891
+    locked: 0
+  - name: Player
+    uniqueID: 735548317
+    locked: 0
