@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class ZombiAI : MonoBehaviour
 {
@@ -28,7 +29,13 @@ public class ZombiAI : MonoBehaviour
     Player player;
     PlayerLife playerLife;
     Animator animator;
-    ZombiMovement movementScript;
+
+
+
+    AIPath aIPath;
+    AIDestinationSetter iDestinationSetter;
+
+
     HealthZombi healthZombi;
 
     ZombieState activeState;
@@ -44,7 +51,10 @@ public class ZombiAI : MonoBehaviour
     {
 
         animator = GetComponent<Animator>();
-        movementScript = GetComponent<ZombiMovement>();
+
+        aIPath = GetComponent<AIPath>();
+        iDestinationSetter = GetComponent<AIDestinationSetter>();
+
         healthZombi = GetComponent<HealthZombi>();
     }
     void Start()
@@ -74,6 +84,7 @@ public class ZombiAI : MonoBehaviour
             case ZombieState.STAND:
                 if (RayScan())
                 {
+                  
                     activeState = ZombieState.MOVE;
                     return;
                 }
@@ -87,7 +98,7 @@ public class ZombiAI : MonoBehaviour
                 {
                     animator.SetFloat("Speed", 0);
                 }
-                movementScript.enabled = false;
+                aIPath.enabled = false;
                 break;
 
             case ZombieState.MOVE:
@@ -101,7 +112,9 @@ public class ZombiAI : MonoBehaviour
                 {
                     activeState = ZombieState.STAND;
                 }
-                movementScript.enabled = true;
+                animator.SetFloat("Speed", 1);
+                aIPath.enabled = true;
+                iDestinationSetter.target = player.transform;
                 break;
 
 
@@ -111,7 +124,8 @@ public class ZombiAI : MonoBehaviour
                     activeState = ZombieState.MOVE;
                     return;
                 }
-                movementScript.enabled = false;
+                animator.SetFloat("Speed", 0);
+                aIPath.enabled = false;
                 AttackZombi();
 
                 break;
