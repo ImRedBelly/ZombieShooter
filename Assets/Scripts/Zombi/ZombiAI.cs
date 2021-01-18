@@ -21,9 +21,8 @@ public class ZombiAI : MonoBehaviour
 
 
     [Header("Patrol Settings")]
-    public bool imPatrol = true;
-    public float speed;
     public Transform[] moveSpots;
+    int randomPonint;
     bool goBack = true;
 
     Player player;
@@ -45,7 +44,7 @@ public class ZombiAI : MonoBehaviour
         MOVE,
         ATTACK
     }
-
+    float distance;
 
     void Awake()
     {
@@ -59,97 +58,106 @@ public class ZombiAI : MonoBehaviour
     }
     void Start()
     {
-
         player = FindObjectOfType<Player>();
         playerLife = FindObjectOfType<PlayerLife>();
         activeState = ZombieState.STAND;
+        RandomPoint();
     }
 
     void Update()
     {
+        distance = Vector3.Distance(transform.position, player.transform.position);
         if (!healthZombi.isDeath)
-        {
             WhatState();
-        }
-
     }
 
     void WhatState()
     {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
         RayScan();
 
         switch (activeState)
         {
             case ZombieState.STAND:
-                if (RayScan())
-                {
-                  
-                    activeState = ZombieState.MOVE;
-                    return;
-                }
-
-                if (imPatrol)
-                {
-                    Chill();
-                    animator.SetFloat("Speed", 1);
-                }
-                else
-                {
-                    animator.SetFloat("Speed", 0);
-                }
-                aIPath.enabled = false;
+                DoStand();
                 break;
 
             case ZombieState.MOVE:
-                if (distance < attackRadius)
-                {
-                    activeState = ZombieState.ATTACK;
-                    return;
-                }
-
-                if (distance > escapeRadius || !RayScan())
-                {
-                    activeState = ZombieState.STAND;
-                }
-                animator.SetFloat("Speed", 1);
-                aIPath.enabled = true;
-                iDestinationSetter.target = player.transform;
+                DoMove();
                 break;
 
-
             case ZombieState.ATTACK:
-                if (distance > attackRadius)
-                {
-                    activeState = ZombieState.MOVE;
-                    return;
-                }
-                animator.SetFloat("Speed", 0);
-                aIPath.enabled = false;
-                AttackZombi();
-
+                DoAttack();
                 break;
         }
     }
 
-    void Chill()
+    void DoStand()
     {
+        if (RayScan())
+        {
+            activeState = ZombieState.MOVE;
+            return;
+        }
+        Patrol();
+        aIPath.enabled = true;
+    }
+    void DoMove()
+    {
+        if (distance < attackRadius)
+        {
+            activeState = ZombieState.ATTACK;
+            return;
+        }
+
+        if (distance > escapeRadius || !RayScan())
+        {
+            activeState = ZombieState.STAND;
+        }
+
+        animator.SetFloat("Speed", 1);
+        aIPath.enabled = true;
+        iDestinationSetter.target = player.transform;
+    }
+    void DoAttack()
+    {
+        if (distance > attackRadius)
+        {
+            activeState = ZombieState.MOVE;
+            return;
+        }
+        animator.SetFloat("Speed", 0);
+        aIPath.enabled = false;
+        AttackZombi();
+    }
+
+
+    void Patrol()
+    {
+        animator.SetFloat("Speed", 1);
+
         if (goBack)
         {
-            transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
-            transform.up = (moveSpots[0].position - transform.position) * -1;
-
-            if (Vector2.Distance(transform.position, moveSpots[0].position) <= 0.1f)
+            
+            iDestinationSetter.target = moveSpots[randomPonint];
+            if (Vector2.Distance(transform.position, moveSpots[randomPonint].position) <= 0.1f)
+            {
                 goBack = false;
+                RandomPoint();
+            }
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
-            transform.up = (moveSpots[1].position - transform.position) * -1;
-
-            if (Vector2.Distance(transform.position, moveSpots[1].position) <= 0.1f)
+            iDestinationSetter.target = moveSpots[randomPonint];
+            if (Vector2.Distance(transform.position, moveSpots[randomPonint].position) <= 0.1f)
+            {
                 goBack = true;
+                RandomPoint();
+            }
         }
+    }
+    void RandomPoint()
+    {
+        randomPonint = Random.Range(0, moveSpots.Length);
     }
     void AttackZombi()
     {
@@ -238,10 +246,10 @@ public class ZombiAI : MonoBehaviour
 
     bool RayScan()
     {
-        int raysOne = 10;
-        int raysTwo = 120;
+        int raysOne = 5;
+        int raysTwo = 36;
 
-        float angleOne = 30;
+        float angleOne = 50;
         float angleTwo = 360;
 
         float j = 0;
