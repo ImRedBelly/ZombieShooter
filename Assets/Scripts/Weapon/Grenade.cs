@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Pool;
 
 public class Grenade : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Grenade : MonoBehaviour
     public Animator animator;
     public GameObject explosive;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(Explode(2));
     }
@@ -46,7 +47,7 @@ public class Grenade : MonoBehaviour
     }
     void Destroy()
     {
-        Destroy(gameObject);
+        LeanPool.Despawn(gameObject);
     }
     void OnDrawGizmos()
     {

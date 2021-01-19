@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Lean.Pool;
 
 public class Gun : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class Gun : MonoBehaviour
         bullets--;
         countBullet.text = "x " + bullets;
         animator.SetTrigger("Shoot");
-        Instantiate(bullet, gun.transform.position, transform.rotation);
+        LeanPool.Spawn(bullet, gun.transform.position, transform.rotation);
         nextFire = fireRate;
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -60,7 +61,7 @@ public class Riffle : MonoBehaviour
         bullets--;
         countBullet.text = "x " + bullets;
         animator.SetTrigger("Shoot");
-        Instantiate(bullet, riffle.transform.position, transform.rotation);
+        LeanPool.Spawn(bullet, riffle.transform.position, transform.rotation);
         nextFire = fireRate;
     }
 

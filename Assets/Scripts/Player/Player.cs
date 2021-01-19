@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using Lean.Pool;
 
 public class Player : MonoBehaviour
 {
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     void GrenadeThrow()
     {
         grenades--;
-        Instantiate(grenade, transform.position, transform.rotation);
+        LeanPool.Spawn(grenade, transform.position, transform.rotation);
         grenadeCount.text = "x " + grenades;
     }
 

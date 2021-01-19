@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Pool;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,20 +12,20 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    void OnEnable()
     {
         rb.velocity = - transform.up * speed;
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        LeanPool.Despawn(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision)
         {
-            Destroy(gameObject);
+            LeanPool.Despawn(gameObject);
         }
     }
 }

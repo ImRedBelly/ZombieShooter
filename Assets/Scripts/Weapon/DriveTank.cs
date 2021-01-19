@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -88,7 +89,7 @@ public class DriveTank : MonoBehaviour
     }
     void Shot()
     {
-        Instantiate(bullet, gunPosition.transform.position, gunTank.transform.rotation);
+        LeanPool.Spawn(bullet, gunPosition.transform.position, gunTank.transform.rotation);
 
         gunPositionAnimator.SetTrigger("Shot");
         nextFire = fireRate;
