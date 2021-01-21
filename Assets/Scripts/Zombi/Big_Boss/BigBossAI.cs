@@ -54,7 +54,7 @@ public class BigBossAI : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = Player.Instance;
         playerLife = FindObjectOfType<PlayerLife>();
         activeState = ZombieState.STAND;
     }

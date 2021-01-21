@@ -58,7 +58,8 @@ public class ZombiAI : MonoBehaviour
     }
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = Player.Instance;
+
         playerLife = FindObjectOfType<PlayerLife>();
         activeState = ZombieState.STAND;
         RandomPoint();

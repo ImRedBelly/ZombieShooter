@@ -19,7 +19,7 @@ public class ZombiMovement : MonoBehaviour
     }
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = Player.Instance;
     }
 
     void Update()

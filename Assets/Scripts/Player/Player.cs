@@ -6,7 +6,7 @@ using Lean.Pool;
 
 public class Player : MonoBehaviour
 {
-
+    public static Player Instance;
 
     public bool isMan;
     public bool isWoman;
@@ -29,6 +29,15 @@ public class Player : MonoBehaviour
     public AnimatorOverrideController[] animatorsWoman;
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+
         gun = GetComponent<Gun>();
         riffle = GetComponent<Riffle>();
         animator = GetComponent<Animator>();
@@ -135,5 +144,11 @@ public class Player : MonoBehaviour
         background.SetActive(false);
         animator.runtimeAnimatorController = animatorsMan[2];
     }
-
+    private void OnDestroy()
+    {
+        if(this == Instance)
+        {
+            Instance = null;
+        }
+    }
 }
